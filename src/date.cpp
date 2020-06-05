@@ -157,7 +157,6 @@ Date ConvertYMDToDate(Year year, Month month, Day day)
 
 	return DAYS_TILL(year) + days;
 }
-
 /** Functions used by the IncreaseDate function */
 
 extern void EnginesDailyLoop();
@@ -255,7 +254,6 @@ static void OnNewDay()
 	DisasterDailyLoop();
 	IndustryDailyLoop();
 
-	SetWindowWidgetDirty(WC_STATUS_BAR, 0, 0);
 	EnginesDailyLoop();
 
 	/* Refresh after possible snowline change */
@@ -274,6 +272,10 @@ void IncreaseDate()
 	if (_game_mode == GM_MENU) return;
 
 	_date_fract++;
+
+	if(_date_fract % MINUTE_TICKS == 0)
+		SetWindowWidgetDirty(WC_STATUS_BAR, 0, 0);
+
 	if (_date_fract < DAY_TICKS) return;
 	_date_fract = 0;
 

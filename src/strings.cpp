@@ -422,6 +422,27 @@ static char *FormatMonthAndYear(char *buff, Date date, const char *last, uint ca
 	return FormatString(buff, GetStringPtr(STR_FORMAT_DATE_SHORT), &tmp_params, last, case_index);
 }
 
+static char* FormatMonthAndYearAndTime(char* buff, Date date, DateFract fract, const char* last, uint case_index)
+{
+	Hour hours = fract / HOUR_TICKS;
+	Minute minutes = (fract - hours * HOUR_TICKS) / MINUTE_TICKS;
+	YearMonthDay ymd;
+
+	char cHour[3];
+	char cMinute[3];
+
+	seprintf(cHour, lastof(cHour), "%02i", hours);
+	seprintf(cMinute, lastof(cMinute), "%02i", minutes + 1);
+
+
+	ConvertDateToYMD(date, &ymd);
+
+	int64 args[] = { ymd.day, STR_MONTH_JAN + ymd.month, ymd.year, (int64)(size_t)cHour, (int64)(size_t)cMinute, };
+	StringParameters tmp_params(args);
+	return FormatString(buff, GetStringPtr(STR_FORMAT_DATE_TIME), &tmp_params, last, case_index);
+}
+
+
 static char *FormatTinyOrISODate(char *buff, Date date, StringID str, const char *last)
 {
 	YearMonthDay ymd;
@@ -1192,6 +1213,15 @@ static char *FormatString(char *buff, const char *str_arg, StringParameters *arg
 				buff = FormatMonthAndYear(buff, args->GetInt32(SCC_DATE_SHORT), last, next_substr_case_index);
 				next_substr_case_index = 0;
 				break;
+
+			case SCC_DATE_TIME:
+			{
+				Date date = args->GetInt32(SCC_DATE_TIME);
+				DateFract dateFract = args->GetInt32(SCC_DATE_TIME);
+				buff = FormatMonthAndYearAndTime(buff, date, dateFract, last, next_substr_case_index);
+				next_substr_case_index = 0;
+				break;
+			}
 
 			case SCC_DATE_LONG: // {DATE_LONG}
 				buff = FormatYmdString(buff, args->GetInt32(SCC_DATE_LONG), last, next_substr_case_index);
