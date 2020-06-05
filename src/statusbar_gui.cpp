@@ -115,7 +115,8 @@ struct StatusBarWindow : Window {
 		switch (widget) {
 			case WID_S_LEFT:
 				SetDParamMaxValue(0, MAX_YEAR * DAYS_IN_YEAR);
-				d = GetStringBoundingBox(STR_WHITE_DATE_LONG);
+				SetDParamMaxValue(1, DAY_TICKS);
+				d = GetStringBoundingBox(STR_WHITE_DATE_TIME);
 				break;
 
 			case WID_S_RIGHT: {
@@ -141,7 +142,9 @@ struct StatusBarWindow : Window {
 			case WID_S_LEFT:
 				/* Draw the date */
 				SetDParam(0, _date);
-				DrawString(r.left + WD_FRAMERECT_LEFT, r.right - WD_FRAMERECT_RIGHT, r.top + WD_FRAMERECT_TOP, STR_WHITE_DATE_LONG, TC_FROMSTRING, SA_HOR_CENTER);
+				SetDParam(1, _date_fract);
+
+				DrawString(r.left + WD_FRAMERECT_LEFT, r.right - WD_FRAMERECT_RIGHT, r.top + WD_FRAMERECT_TOP, STR_WHITE_DATE_TIME, TC_FROMSTRING, SA_HOR_CENTER);
 				break;
 
 			case WID_S_RIGHT: {
