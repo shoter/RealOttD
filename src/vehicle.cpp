@@ -939,6 +939,9 @@ static void RunVehicleDayProc()
 
 void CallVehicleTicks()
 {
+	if (_date_fract % 40 != 0)
+		return;
+
 	_vehicles_to_autoreplace.clear();
 
 	RunVehicleDayProc();
