@@ -432,7 +432,7 @@ static char* FormatMonthAndYearAndTime(char* buff, Date date, DateFract fract, c
 	char cMinute[3];
 
 	seprintf(cHour, lastof(cHour), "%02i", hours);
-	seprintf(cMinute, lastof(cMinute), "%02i", minutes + 1);
+	seprintf(cMinute, lastof(cMinute), "%02i", minutes);
 
 
 	ConvertDateToYMD(date, &ymd);

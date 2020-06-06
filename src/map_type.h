@@ -34,7 +34,11 @@ struct TileExtended {
 	byte m6;   ///< General purpose
 	byte m7;   ///< Primarily used for newgrf support
 	uint16 m8; ///< General purpose
+	uint32 townProdTick;
 };
+
+assert_compile(sizeof(TileExtended) == 8);
+
 
 /**
  * An offset value between to tiles.

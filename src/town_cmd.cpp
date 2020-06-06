@@ -54,6 +54,9 @@
 
 #include "safeguards.h"
 
+extern void CDECL IConsolePrintF(TextColour colour_code, const char* format, ...);
+
+
 TownID _new_town_id;
 CargoTypes _town_cargoes_accepted; ///< Bitmap of all cargoes accepted by houses.
 
@@ -541,6 +544,18 @@ static void TileLoop_Town(TileIndex tile)
 	}
 
 	Town *t = Town::GetByTile(tile);
+
+	// IConsolePrintF(TC_SILVER, "%zu - %zu", _me[tile].townProdTick, tile);
+
+	if ((_date_fract - _me[tile].townProdTick) > TOWN_PRODUCE_TICKS)
+	{
+		_me[tile].townProdTick = _date_fract;
+	}
+	else
+	{
+		return;
+	}
+
 	uint32 r = Random();
 
 	StationFinder stations(TileArea(tile, 1, 1));
@@ -563,55 +578,56 @@ static void TileLoop_Town(TileIndex tile)
 			t->supplied[cs->Index()].new_max += amt;
 			t->supplied[cs->Index()].new_act += moved;
 		}
-	} else {
+	}
+	else {
 		switch (_settings_game.economy.town_cargogen_mode) {
-			case TCGM_ORIGINAL:
-				/* Original (quadratic) cargo generation algorithm */
-				if (GB(r, 0, 8) < hs->population) {
-					uint amt = GB(r, 0, 8) / 8 + 1;
+		case TCGM_ORIGINAL:
+			/* Original (quadratic) cargo generation algorithm */
+			if (GB(r, 0, 8) < hs->population) {
+				uint amt = GB(r, 0, 8) / 8 + 1;
 
-					if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
-					t->supplied[CT_PASSENGERS].new_max += amt;
-					t->supplied[CT_PASSENGERS].new_act += MoveGoodsToStation(CT_PASSENGERS, amt, ST_TOWN, t->index, stations.GetStations());
-				}
+				if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
+				t->supplied[CT_PASSENGERS].new_max += amt;
+				t->supplied[CT_PASSENGERS].new_act += MoveGoodsToStation(CT_PASSENGERS, amt, ST_TOWN, t->index, stations.GetStations());
+			}
 
-				if (GB(r, 8, 8) < hs->mail_generation) {
-					uint amt = GB(r, 8, 8) / 8 + 1;
+			if (GB(r, 8, 8) < hs->mail_generation) {
+				uint amt = GB(r, 8, 8) / 8 + 1;
 
-					if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
-					t->supplied[CT_MAIL].new_max += amt;
-					t->supplied[CT_MAIL].new_act += MoveGoodsToStation(CT_MAIL, amt, ST_TOWN, t->index, stations.GetStations());
-				}
-				break;
+				if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
+				t->supplied[CT_MAIL].new_max += amt;
+				t->supplied[CT_MAIL].new_act += MoveGoodsToStation(CT_MAIL, amt, ST_TOWN, t->index, stations.GetStations());
+			}
+			break;
 
-			case TCGM_BITCOUNT:
-				/* Binomial distribution per tick, by a series of coin flips */
-				/* Reduce generation rate to a 1/4, using tile bits to spread out distribution.
-				 * As tick counter is incremented by 256 between each call, we ignore the lower 8 bits. */
-				if (GB(_tick_counter, 8, 2) == GB(tile, 0, 2)) {
-					/* Make a bitmask with up to 32 bits set, one for each potential pax */
-					int genmax = (hs->population + 7) / 8;
-					uint32 genmask = (genmax >= 32) ? 0xFFFFFFFF : ((1 << genmax) - 1);
-					/* Mask random value by potential pax and count number of actual pax */
-					uint amt = CountBits(r & genmask);
-					/* Adjust and apply */
-					if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
-					t->supplied[CT_PASSENGERS].new_max += amt;
-					t->supplied[CT_PASSENGERS].new_act += MoveGoodsToStation(CT_PASSENGERS, amt, ST_TOWN, t->index, stations.GetStations());
+		case TCGM_BITCOUNT:
+			/* Binomial distribution per tick, by a series of coin flips */
+			/* Reduce generation rate to a 1/4, using tile bits to spread out distribution.
+			 * As tick counter is incremented by 256 between each call, we ignore the lower 8 bits. */
+			if (GB(_tick_counter, 8, 2) == GB(tile, 0, 2)) {
+				/* Make a bitmask with up to 32 bits set, one for each potential pax */
+				int genmax = (hs->population + 7) / 8;
+				uint32 genmask = (genmax >= 32) ? 0xFFFFFFFF : ((1 << genmax) - 1);
+				/* Mask random value by potential pax and count number of actual pax */
+				uint amt = CountBits(r & genmask);
+				/* Adjust and apply */
+				if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
+				t->supplied[CT_PASSENGERS].new_max += amt;
+				t->supplied[CT_PASSENGERS].new_act += MoveGoodsToStation(CT_PASSENGERS, amt, ST_TOWN, t->index, stations.GetStations());
 
-					/* Do the same for mail, with a fresh random */
-					r = Random();
-					genmax = (hs->mail_generation + 7) / 8;
-					genmask = (genmax >= 32) ? 0xFFFFFFFF : ((1 << genmax) - 1);
-					amt = CountBits(r & genmask);
-					if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
-					t->supplied[CT_MAIL].new_max += amt;
-					t->supplied[CT_MAIL].new_act += MoveGoodsToStation(CT_MAIL, amt, ST_TOWN, t->index, stations.GetStations());
-				}
-				break;
+				/* Do the same for mail, with a fresh random */
+				r = Random();
+				genmax = (hs->mail_generation + 7) / 8;
+				genmask = (genmax >= 32) ? 0xFFFFFFFF : ((1 << genmax) - 1);
+				amt = CountBits(r & genmask);
+				if (EconomyIsInRecession()) amt = (amt + 1) >> 1;
+				t->supplied[CT_MAIL].new_max += amt;
+				t->supplied[CT_MAIL].new_act += MoveGoodsToStation(CT_MAIL, amt, ST_TOWN, t->index, stations.GetStations());
+			}
+			break;
 
-			default:
-				NOT_REACHED();
+		default:
+			NOT_REACHED();
 		}
 	}
 
