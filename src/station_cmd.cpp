@@ -3437,6 +3437,13 @@ static inline void byte_inc_sat(byte *p)
 	if (b != 0) *p = b;
 }
 
+static inline void int_inc_sat(int* p)
+{
+	int b = *p + 1;
+	if (b != 0) *p = b;
+}
+
+
 /**
  * Truncate the cargo by a specific amount.
  * @param cs The type of cargo to perform the truncation for.
@@ -3463,8 +3470,8 @@ static void UpdateStationRating(Station *st)
 {
 	bool waiting_changed = false;
 
-	byte_inc_sat(&st->time_since_load);
-	byte_inc_sat(&st->time_since_unload);
+	int_inc_sat(&st->time_since_load);
+	int_inc_sat(&st->time_since_unload);
 
 	const CargoSpec *cs;
 	FOR_ALL_CARGOSPECS(cs) {
@@ -3528,7 +3535,7 @@ static void UpdateStationRating(Station *st)
 				int b = ge->last_speed - 85;
 				if (b >= 0) rating += b >> 2;
 
-				byte waittime = ge->time_since_pickup;
+				int waittime = ge->time_since_pickup;
 				if (st->last_vehicle_type == VEH_SHIP) waittime >>= 2;
 				if (waittime <= 21) rating += 25;
 				if (waittime <= 12) rating += 25;
@@ -3810,7 +3817,7 @@ static void StationHandleSmallTick(BaseStation *st)
 {
 	if ((st->facilities & FACIL_WAYPOINT) != 0 || !st->IsInUse()) return;
 
-	byte b = st->delete_ctr + 1;
+	int b = st->delete_ctr + 1;
 	if (b >= STATION_RATING_TICKS) b = 0;
 	st->delete_ctr = b;
 

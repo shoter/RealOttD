@@ -180,9 +180,9 @@ static const SaveLoad _old_station_desc[] = {
 	SLE_CONDVAR(Station, had_vehicle_of_type,        SLE_FILE_U16 | SLE_VAR_U8,   SL_MIN_VERSION, SLV_122),
 	SLE_CONDVAR(Station, had_vehicle_of_type,        SLE_UINT8,                 SLV_122, SL_MAX_VERSION),
 
-	    SLE_VAR(Station, time_since_load,            SLE_UINT8),
-	    SLE_VAR(Station, time_since_unload,          SLE_UINT8),
-	    SLE_VAR(Station, delete_ctr,                 SLE_UINT8),
+	    SLE_VAR(Station, time_since_load,            SLE_UINT32),
+	    SLE_VAR(Station, time_since_unload,          SLE_UINT32),
+	    SLE_VAR(Station, delete_ctr,                 SLE_UINT32),
 	    SLE_VAR(Station, owner,                      SLE_UINT8),
 	    SLE_VAR(Station, facilities,                 SLE_UINT8),
 	    SLE_VAR(Station, airport.type,               SLE_UINT8),
@@ -389,7 +389,7 @@ static const SaveLoad _base_station_desc[] = {
 	      SLE_REF(BaseStation, town,                   REF_TOWN),
 	      SLE_VAR(BaseStation, string_id,              SLE_STRINGID),
 	     SLE_SSTR(BaseStation, name,                   SLE_STR | SLF_ALLOW_CONTROL),
-	      SLE_VAR(BaseStation, delete_ctr,             SLE_UINT8),
+	      SLE_VAR(BaseStation, delete_ctr,             SLE_UINT32),
 	      SLE_VAR(BaseStation, owner,                  SLE_UINT8),
 	      SLE_VAR(BaseStation, facilities,             SLE_UINT8),
 	      SLE_VAR(BaseStation, build_date,             SLE_INT32),
@@ -433,8 +433,8 @@ static const SaveLoad _station_desc[] = {
 
 	      SLE_VAR(Station, indtype,                    SLE_UINT8),
 
-	      SLE_VAR(Station, time_since_load,            SLE_UINT8),
-	      SLE_VAR(Station, time_since_unload,          SLE_UINT8),
+	      SLE_VAR(Station, time_since_load,            SLE_UINT32),
+	      SLE_VAR(Station, time_since_unload,          SLE_UINT32),
 	      SLE_VAR(Station, last_vehicle_type,          SLE_UINT8),
 	      SLE_VAR(Station, had_vehicle_of_type,        SLE_UINT8),
 	      SLE_LST(Station, loading_vehicles,           REF_VEHICLE),

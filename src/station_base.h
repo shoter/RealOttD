@@ -471,8 +471,8 @@ public:
 
 	StationHadVehicleOfType had_vehicle_of_type;
 
-	byte time_since_load;
-	byte time_since_unload;
+	int time_since_load;
+	int time_since_unload;
 
 	byte last_vehicle_type;
 	std::list<Vehicle *> loading_vehicles;
