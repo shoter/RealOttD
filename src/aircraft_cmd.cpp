@@ -1013,11 +1013,14 @@ static bool AircraftController(Aircraft *v)
 	if (amd.flag & AMED_BRAKE)      { speed_limit = SPEED_LIMIT_TAXI;     hard_limit = false; }
 
 	count = UpdateAircraftSpeed(v, speed_limit, hard_limit);
-	if (count == 0) return false;
+	v->move_progress += count;
+
+	if (v->move_progress < VEHICLE_SLOWDOWN) return false;
 
 	if (v->turn_counter != 0) v->turn_counter--;
 
-	do {
+	while(v->move_progress >= VEHICLE_SLOWDOWN)
+	{
 
 		GetNewVehiclePosResult gp;
 
@@ -1126,7 +1129,9 @@ static bool AircraftController(Aircraft *v)
 		}
 
 		SetAircraftPosition(v, gp.x, gp.y, z);
-	} while (--count != 0);
+
+		v->move_progress -= VEHICLE_SLOWDOWN;
+	};
 	return false;
 }
 

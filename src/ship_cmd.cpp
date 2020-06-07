@@ -586,7 +586,7 @@ static bool ShipMoveUpDownOnLock(Ship *v)
 		SetWindowWidgetDirty(WC_VEHICLE_VIEW, v->index, WID_VV_START_STOP);
 	}
 
-	if ((v->tick_counter & 7) == 0) {
+	if ((v->tick_counter & (7 * VEHICLE_SLOWDOWN)) == 0) {
 		v->z_pos += dz;
 		v->UpdatePosition();
 		v->UpdateViewport(true, true);
@@ -620,6 +620,14 @@ bool IsShipDestinationTile(TileIndex tile, StationID station)
 
 static void ShipController(Ship *v)
 {
+	if (v->move_progress < VEHICLE_SLOWDOWN)
+	{
+		v->move_progress++;
+		return;
+	}
+
+	v->move_progress = 0;
+
 	uint32 r;
 	const byte *b;
 	Track track;
@@ -643,7 +651,7 @@ static void ShipController(Ship *v)
 
 	/* Rotating on spot */
 	if (v->direction != v->rotation) {
-		if ((v->tick_counter & 7) == 0) {
+		if ((v->tick_counter & (7 * VEHICLE_SLOWDOWN)) == 0) {
 			DirDiff diff = DirDifference(v->direction, v->rotation);
 			v->rotation = ChangeDir(v->rotation, diff > DIRDIFF_REVERSE ? DIRDIFF_45LEFT : DIRDIFF_45RIGHT);
 			v->UpdateViewport(true, true);

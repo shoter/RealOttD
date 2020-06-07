@@ -1139,6 +1139,14 @@ static bool CanBuildTramTrackOnTile(CompanyID c, TileIndex t, RoadType rt, RoadB
 
 bool IndividualRoadVehicleController(RoadVehicle *v, const RoadVehicle *prev)
 {
+	if (v->move_progress < VEHICLE_SLOWDOWN)
+	{
+		v->move_progress++;
+		return true; //we are not blocked - send more invocations to consume it xD
+	}
+
+	v->move_progress = 0;
+
 	if (v->overtaking != 0)  {
 		if (IsTileType(v->tile, MP_STATION)) {
 			/* Force us to be not overtaking! */

@@ -3083,6 +3083,15 @@ static Vehicle *CheckTrainAtSignal(Vehicle *v, void *data)
  */
 bool TrainController(Train *v, Vehicle *nomove, bool reverse)
 {
+	if (v->move_progress < VEHICLE_SLOWDOWN)
+	{
+		v->move_progress++;
+		return true; //not blocked
+	}
+
+	v->move_progress = 0;
+
+
 	Train *first = v->First();
 	Train *prev;
 	bool direction_changed = false; // has direction of any part changed?
