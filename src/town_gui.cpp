@@ -360,7 +360,7 @@ public:
 
 		uint y = r.top + WD_FRAMERECT_TOP;
 
-		SetDParam(0, this->town->cache.population);
+		SetDParam(0, uint64(this->town->cache.population * 10));
 		SetDParam(1, this->town->cache.num_houses);
 		DrawString(r.left + WD_FRAMERECT_LEFT, r.right - WD_FRAMERECT_LEFT, y, STR_TOWN_VIEW_POPULATION_HOUSES);
 
@@ -822,7 +822,7 @@ public:
 					}
 
 					SetDParam(0, t->index);
-					SetDParam(1, t->cache.population);
+					SetDParam(1, uint64(t->cache.population * 10));
 					DrawString(text_left, text_right, y + (this->resize.step_height - FONT_HEIGHT_NORMAL) / 2, GetTownString(t));
 
 					y += this->resize.step_height;

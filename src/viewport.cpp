@@ -1406,7 +1406,7 @@ static void ViewportAddKdtreeSigns(DrawPixelInfo *dpi)
 		ViewportAddString(dpi, ZOOM_LVL_OUT_16X, &t->cache.sign,
 			_settings_client.gui.population_in_label ? STR_VIEWPORT_TOWN_POP : STR_VIEWPORT_TOWN,
 			STR_VIEWPORT_TOWN_TINY_WHITE, STR_VIEWPORT_TOWN_TINY_BLACK,
-			t->index, t->cache.population);
+			t->index, uint64(t->cache.population * 10));
 	}
 
 	for (const auto *si : signs) {
