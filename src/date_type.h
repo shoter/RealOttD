@@ -36,7 +36,7 @@ static const int DAY_TICKS         = 2880000 / TIME_BOOST; ///< ticks per day
 static const int DAYS_IN_YEAR      = 365; ///< days per year
 static const int DAYS_IN_LEAP_YEAR = 366; ///< sometimes, you need one day more...
 
-static const int STATION_RATING_TICKS     = MINUTE_TICKS * 15; ///< cycle duration for updating station rating
+static const int STATION_RATING_TICKS     = HOUR_TICKS * 2; ///< cycle duration for updating station rating
 static const int STATION_ACCEPTANCE_TICKS = 250; ///< cycle duration for updating station acceptance
 static const int STATION_LINKGRAPH_TICKS  = 504; ///< cycle duration for cleaning dead links
 static const int CARGO_AGING_TICKS        = HOUR_TICKS; ///< cycle duration for aging cargo
