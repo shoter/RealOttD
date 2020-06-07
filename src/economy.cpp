@@ -1098,8 +1098,12 @@ static Money DeliverGoods(int num_pieces, CargoID cargo_type, StationID dest, Ti
 	st->town->received[cs->town_effect].new_act += accepted_total;
 
 	/* Determine profit */
-	uint distance = 40;
-	//uint distance = DistanceManhattan(source_tile, st->xy);
+	uint distance = 100;
+	if (cargo_type == CargoType::CT_PASSENGERS || cargo_type == CargoType::CT_MAIL)
+	{
+		distance = 20 + DistanceManhattan(source_tile, st->xy) >> 1;
+	}
+
 	Money profit = GetTransportedGoodsIncome(accepted_total, distance , days_in_transit, cargo_type);
 
 	/* Update the cargo monitor. */
