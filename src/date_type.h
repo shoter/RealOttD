@@ -30,8 +30,8 @@ typedef uint8  Day;   ///< Type for the day of the month, note: 1 based, first d
  * 1 day is thus about 2 seconds (74 * 30 = 2220) on a machine that can run OpenTTD normally
  */
 static const int TIME_BOOST = 8;
-static const int MINUTE_TICKS = 4000 / TIME_BOOST; /// It's not exact this value but this is very good aproximation.
-static const int HOUR_TICKS = 240000 / TIME_BOOST;
+static const int MINUTE_TICKS =  2000 / TIME_BOOST; /// It's not exact this value but this is very good aproximation.
+static const int HOUR_TICKS = 120000 / TIME_BOOST;
 static const int DAY_TICKS         = 2880000 / TIME_BOOST; ///< ticks per day
 static const int DAYS_IN_YEAR      = 365; ///< days per year
 static const int DAYS_IN_LEAP_YEAR = 366; ///< sometimes, you need one day more...
