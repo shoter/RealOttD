@@ -1099,12 +1099,19 @@ static Money DeliverGoods(int num_pieces, CargoID cargo_type, StationID dest, Ti
 
 	/* Determine profit */
 	uint distance = 100;
+	uint cargo_count = accepted_total;
+
 	if (cargo_type == CargoType::CT_PASSENGERS || cargo_type == CargoType::CT_MAIL)
 	{
 		distance = 20 + DistanceManhattan(source_tile, st->xy) >> 1;
 	}
+	else
+	{
+		cargo_count *= 3;
+	}
 
-	Money profit = GetTransportedGoodsIncome(accepted_total, distance , days_in_transit, cargo_type);
+
+	Money profit = GetTransportedGoodsIncome(cargo_count, distance , days_in_transit, cargo_type);
 
 	/* Update the cargo monitor. */
 	AddCargoDelivery(cargo_type, company->index, accepted_total - accepted_ind, src_type, src, st);
