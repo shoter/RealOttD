@@ -25,7 +25,7 @@
 #include <list>
 #include <map>
 
-static const int VEHICLE_SLOWDOWN = 20;
+static const int VEHICLE_SLOWDOWN = 40 / TIME_BOOST;
 
 /** Vehicle status bits in #Vehicle::vehstatus. */
 enum VehStatus {
