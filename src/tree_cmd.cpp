@@ -48,7 +48,7 @@ enum ExtraTreePlacement {
 };
 
 /** Determines when to consider building more trees. */
-byte _trees_tick_ctr;
+uint32 _trees_tick_ctr;
 
 static const uint16 DEFAULT_TREE_STEPS = 1000;             ///< Default number of attempts for placing trees.
 static const uint16 DEFAULT_RAINFOREST_TREE_STEPS = 15000; ///< Default number of attempts for placing extra trees at rainforest in tropic.
@@ -773,6 +773,7 @@ void OnTick_Trees()
 	/* byte underflow */
 	if (--_trees_tick_ctr != 0 || _settings_game.construction.extra_tree_placement != ETP_ALL) return;
 
+	_trees_tick_ctr = TREE_RANDOM_PLACE_TICK_TIME;
 	/* place a tree at a random spot */
 	r = Random();
 	tile = RandomTileSeed(r);

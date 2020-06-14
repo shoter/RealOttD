@@ -43,6 +43,7 @@ static const uint TREE_COUNT_SUB_ARCTIC   = TREE_RAINFOREST - TREE_SUB_ARCTIC;  
 static const uint TREE_COUNT_RAINFOREST   = TREE_CACTUS     - TREE_RAINFOREST;   ///< number of tree types for the 'rainforest part' of a sub-tropic map.
 static const uint TREE_COUNT_SUB_TROPICAL = TREE_TOYLAND    - TREE_SUB_TROPICAL; ///< number of tree types for the 'sub-tropic part' of a sub-tropic map.
 static const uint TREE_COUNT_TOYLAND      = 9;                                   ///< number of tree types on a toyland map.
+static const uint32 TREE_RANDOM_PLACE_TICK_TIME = HOUR_TICKS * 2;
 
 /**
  * Enumeration for ground types of tiles with trees.
