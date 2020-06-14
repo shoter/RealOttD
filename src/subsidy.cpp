@@ -40,7 +40,7 @@ void Subsidy::AwardTo(CompanyID company)
 	assert(!this->IsAwarded());
 
 	this->awarded = company;
-	this->remaining = SUBSIDY_CONTRACT_MONTHS;
+	this->remaining = SUBSIDY_CONTRACT_DAYS;
 
 	char company_name[MAX_LENGTH_COMPANY_NAME_CHARS * MAX_CHAR_LENGTH];
 	SetDParam(0, company);
@@ -215,7 +215,7 @@ void CreateSubsidy(CargoID cid, SourceType src_type, SourceID src, SourceType ds
 	s->src = src;
 	s->dst_type = dst_type;
 	s->dst = dst;
-	s->remaining = SUBSIDY_OFFER_MONTHS;
+	s->remaining = SUBSIDY_OFFER_DAYS;
 	s->awarded = INVALID_COMPANY;
 
 	Pair reftype = SetupSubsidyDecodeParam(s, false);
