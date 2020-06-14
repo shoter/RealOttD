@@ -54,6 +54,8 @@ static const uint16 DEFAULT_TREE_STEPS = 1000;             ///< Default number o
 static const uint16 DEFAULT_RAINFOREST_TREE_STEPS = 15000; ///< Default number of attempts for placing extra trees at rainforest in tropic.
 static const uint16 EDITOR_TREE_DIV = 5;                   ///< Game editor tree generation divisor factor.
 
+extern void CDECL IConsolePrintF(TextColour colour_code, const char* format, ...);
+
 /**
  * Tests if a tile can be converted to MP_TREES
  * This is true for clear ground without farms or rocks.
@@ -771,9 +773,11 @@ void OnTick_Trees()
 	}
 
 	/* byte underflow */
-	if (--_trees_tick_ctr != 0 || _settings_game.construction.extra_tree_placement != ETP_ALL) return;
+	if (_trees_tick_ctr-- != 0 || _settings_game.construction.extra_tree_placement != ETP_ALL) return;
 
 	_trees_tick_ctr = TREE_RANDOM_PLACE_TICK_TIME;
+	IConsolePrintF(TC_SILVER, "Tree tick!");
+
 	/* place a tree at a random spot */
 	r = Random();
 	tile = RandomTileSeed(r);
