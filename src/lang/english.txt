@@ -3197,10 +3197,10 @@ STR_GOAL_QUESTION_BUTTON_CLOSE                                  :Close
 # Subsidies window
 STR_SUBSIDIES_CAPTION                                           :{WHITE}Subsidies
 STR_SUBSIDIES_OFFERED_TITLE                                     :{BLACK}Subsidies on offer for services taking:
-STR_SUBSIDIES_OFFERED_FROM_TO                                   :{ORANGE}{STRING} from {STRING2} to {STRING2}{YELLOW} (by {DATE_SHORT})
+STR_SUBSIDIES_OFFERED_FROM_TO                                   :{ORANGE}{STRING} from {STRING2} to {STRING2}{YELLOW} (by {DATE_LONG})
 STR_SUBSIDIES_NONE                                              :{ORANGE}- None -
 STR_SUBSIDIES_SUBSIDISED_TITLE                                  :{BLACK}Services already subsidised:
-STR_SUBSIDIES_SUBSIDISED_FROM_TO                                :{ORANGE}{STRING} from {STRING2} to {STRING2}{YELLOW} ({COMPANY}{YELLOW}, until {DATE_SHORT})
+STR_SUBSIDIES_SUBSIDISED_FROM_TO                                :{ORANGE}{STRING} from {STRING2} to {STRING2}{YELLOW} ({COMPANY}{YELLOW}, until {DATE_LONG})
 STR_SUBSIDIES_TOOLTIP_CLICK_ON_SERVICE_TO_CENTER                :{BLACK}Click on service to centre main view on industry/town. Ctrl+Click opens a new viewport on industry/town location
 
 # Story book window
@@ -3392,7 +3392,7 @@ STR_COMPANY_INFRASTRUCTURE_VIEW_CANALS                          :{WHITE}Canals
 STR_COMPANY_INFRASTRUCTURE_VIEW_STATION_SECT                    :{GOLD}Stations:
 STR_COMPANY_INFRASTRUCTURE_VIEW_STATIONS                        :{WHITE}Station tiles
 STR_COMPANY_INFRASTRUCTURE_VIEW_AIRPORTS                        :{WHITE}Airports
-STR_COMPANY_INFRASTRUCTURE_VIEW_TOTAL                           :{WHITE}{CURRENCY_LONG}/yr
+STR_COMPANY_INFRASTRUCTURE_VIEW_TOTAL                           :{WHITE}{CURRENCY_LONG}/dy
 
 # Industry directory
 STR_INDUSTRY_DIRECTORY_CAPTION                                  :{WHITE}Industries
@@ -3517,7 +3517,7 @@ STR_PURCHASE_INFO_SPEED_POWER                                   :{BLACK}Speed: {
 STR_PURCHASE_INFO_SPEED                                         :{BLACK}Speed: {GOLD}{VELOCITY}
 STR_PURCHASE_INFO_SPEED_OCEAN                                   :{BLACK}Speed on ocean: {GOLD}{VELOCITY}
 STR_PURCHASE_INFO_SPEED_CANAL                                   :{BLACK}Speed on canal/river: {GOLD}{VELOCITY}
-STR_PURCHASE_INFO_RUNNINGCOST                                   :{BLACK}Running Cost: {GOLD}{CURRENCY_LONG}/yr
+STR_PURCHASE_INFO_RUNNINGCOST                                   :{BLACK}Running Cost: {GOLD}{CURRENCY_LONG}/month
 STR_PURCHASE_INFO_CAPACITY                                      :{BLACK}Capacity: {GOLD}{CARGO_LONG} {STRING}
 STR_PURCHASE_INFO_REFITTABLE                                    :(refittable)
 STR_PURCHASE_INFO_DESIGNED_LIFE                                 :{BLACK}Designed: {GOLD}{NUM}{BLACK} Life: {GOLD}{COMMA} year{P "" s}
@@ -3682,13 +3682,13 @@ STR_ENGINE_PREVIEW_TRAM_VEHICLE                                 :tramway vehicle
 STR_ENGINE_PREVIEW_AIRCRAFT                                     :aircraft
 STR_ENGINE_PREVIEW_SHIP                                         :ship
 
-STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER                      :{BLACK}Cost: {CURRENCY_LONG} Weight: {WEIGHT_SHORT}{}Speed: {VELOCITY}  Power: {POWER}{}Running Cost: {CURRENCY_LONG}/yr{}Capacity: {CARGO_LONG}
-STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER_MAX_TE               :{BLACK}Cost: {CURRENCY_LONG} Weight: {WEIGHT_SHORT}{}Speed: {VELOCITY}  Power: {POWER}  Max. T.E.: {6:FORCE}{}Running Cost: {4:CURRENCY_LONG}/yr{}Capacity: {5:CARGO_LONG}
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_CAP_RUNCOST                   :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Capacity: {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/yr
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_CAP_CAP_RUNCOST          :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING}{}Capacity: {CARGO_LONG}, {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/yr
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_CAP_RUNCOST              :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING}{}Capacity: {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/yr
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_RANGE_CAP_CAP_RUNCOST    :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING} Range: {COMMA} tiles{}Capacity: {CARGO_LONG}, {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/yr
-STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_RANGE_CAP_RUNCOST        :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING} Range: {COMMA} tiles{}Capacity: {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/yr
+STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER                      :{BLACK}Cost: {CURRENCY_LONG} Weight: {WEIGHT_SHORT}{}Speed: {VELOCITY}  Power: {POWER}{}Running Cost: {CURRENCY_LONG}/month{}Capacity: {CARGO_LONG}
+STR_ENGINE_PREVIEW_COST_WEIGHT_SPEED_POWER_MAX_TE               :{BLACK}Cost: {CURRENCY_LONG} Weight: {WEIGHT_SHORT}{}Speed: {VELOCITY}  Power: {POWER}  Max. T.E.: {6:FORCE}{}Running Cost: {4:CURRENCY_LONG}/month{}Capacity: {5:CARGO_LONG}
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_CAP_RUNCOST                   :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Capacity: {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/month
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_CAP_CAP_RUNCOST          :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING}{}Capacity: {CARGO_LONG}, {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/month
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_CAP_RUNCOST              :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING}{}Capacity: {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/month
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_RANGE_CAP_CAP_RUNCOST    :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING} Range: {COMMA} tiles{}Capacity: {CARGO_LONG}, {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/month
+STR_ENGINE_PREVIEW_COST_MAX_SPEED_TYPE_RANGE_CAP_RUNCOST        :{BLACK}Cost: {CURRENCY_LONG} Max. Speed: {VELOCITY}{}Aircraft type: {STRING} Range: {COMMA} tiles{}Capacity: {CARGO_LONG}{}Running Cost: {CURRENCY_LONG}/month
 
 # Autoreplace window
 STR_REPLACE_VEHICLES_WHITE                                      :{WHITE}Replace {STRING} - {STRING1}
@@ -3810,7 +3810,7 @@ STR_VEHICLE_DETAILS_ROAD_VEHICLE_RENAME                         :{BLACK}Name roa
 STR_VEHICLE_DETAILS_SHIP_RENAME                                 :{BLACK}Name ship
 STR_VEHICLE_DETAILS_AIRCRAFT_RENAME                             :{BLACK}Name aircraft
 
-STR_VEHICLE_INFO_AGE_RUNNING_COST_YR                            :{BLACK}Age: {LTBLUE}{STRING2}{BLACK}   Running Cost: {LTBLUE}{CURRENCY_LONG}/yr
+STR_VEHICLE_INFO_AGE_RUNNING_COST_YR                            :{BLACK}Age: {LTBLUE}{STRING2}{BLACK}   Running Cost: {LTBLUE}{CURRENCY_LONG}/month
 # The next two need to stay in this order
 STR_VEHICLE_INFO_AGE                                            :{COMMA} year{P "" s} ({COMMA})
 STR_VEHICLE_INFO_AGE_RED                                        :{RED}{COMMA} year{P "" s} ({COMMA})

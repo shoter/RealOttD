@@ -169,6 +169,7 @@ extern void TownsMonthlyLoop();
 extern void IndustryMonthlyLoop();
 extern void StationMonthlyLoop();
 extern void SubsidyDailyLoop();
+extern void CompaniesDaylyLoop();
 
 extern void CompaniesYearlyLoop();
 extern void VehiclesYearlyLoop();
@@ -253,6 +254,7 @@ static void OnNewDay()
 	DisasterDailyLoop();
 	IndustryDailyLoop();
 	SubsidyDailyLoop();
+	CompaniesDaylyLoop();
 
 	EnginesDailyLoop();
 

@@ -1718,7 +1718,7 @@ static const OldChunks main_chunk[] = {
 	OCL_VAR (  OC_UINT8,    1, &_old_diff_level ),
 
 	OCL_VAR ( OC_TTD | OC_UINT8,    1, &_settings_game.game_creation.landscape ),
-	OCL_VAR ( OC_TTD | OC_UINT8,    1, &_trees_tick_ctr ),
+	OCL_VAR ( OC_TTD | OC_UINT32,    1, &_trees_tick_ctr ),
 
 	OCL_CNULL( OC_TTD, 1 ),               ///< Custom vehicle types yes/no, no longer used
 	OCL_VAR ( OC_TTD | OC_UINT8,    1, &_settings_game.game_creation.snow_line_height ),

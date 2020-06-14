@@ -1969,11 +1969,11 @@ struct CompanyInfrastructureWindow : Window
 				uint count_width = GetStringBoundingBox(STR_WHITE_COMMA).width + 20; // Reserve some wiggle room
 
 				if (_settings_game.economy.infrastructure_maintenance) {
-					SetDParamMaxValue(0, this->GetTotalMaintenanceCost() * 12); // Convert to per year
+					SetDParamMaxValue(0, this->GetTotalMaintenanceCost()); // Convert to per year
 					this->total_width = GetStringBoundingBox(STR_COMPANY_INFRASTRUCTURE_VIEW_TOTAL).width + 20;
 					size->width = max(size->width, this->total_width);
 
-					SetDParamMaxValue(0, max_cost * 12); // Convert to per year
+					SetDParamMaxValue(0, max_cost); // Convert to per year
 					count_width += max(this->total_width, GetStringBoundingBox(STR_COMPANY_INFRASTRUCTURE_VIEW_TOTAL).width);
 				}
 
@@ -2001,7 +2001,7 @@ struct CompanyInfrastructureWindow : Window
 		DrawString(r.left, r.right, y += FONT_HEIGHT_NORMAL, STR_WHITE_COMMA, TC_FROMSTRING, SA_RIGHT);
 
 		if (_settings_game.economy.infrastructure_maintenance) {
-			SetDParam(0, monthly_cost * 12); // Convert to per year
+			SetDParam(0, monthly_cost); // Convert to per year
 			int left = _current_text_dir == TD_RTL ? r.right - this->total_width : r.left;
 			DrawString(left, left + this->total_width, y, STR_COMPANY_INFRASTRUCTURE_VIEW_TOTAL, TC_FROMSTRING, SA_RIGHT);
 		}
@@ -2093,7 +2093,7 @@ struct CompanyInfrastructureWindow : Window
 					int left = _current_text_dir == TD_RTL ? r.right - this->total_width : r.left;
 					GfxFillRect(left, y, left + this->total_width, y, PC_WHITE);
 					y += EXP_LINESPACE;
-					SetDParam(0, this->GetTotalMaintenanceCost() * 12); // Convert to per year
+					SetDParam(0, this->GetTotalMaintenanceCost()); // Convert to per year
 					DrawString(left, left + this->total_width, y, STR_COMPANY_INFRASTRUCTURE_VIEW_TOTAL, TC_FROMSTRING, SA_RIGHT);
 				}
 				break;

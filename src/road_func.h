@@ -15,6 +15,8 @@
 #include "economy_func.h"
 #include "transparency.h"
 
+static const int ROAD_PRICE_MULT = 3;
+
 /**
  * Whether the given roadtype is valid.
  * @param r the roadtype to check for validness
