@@ -655,7 +655,7 @@ static void DispatchLeftClickEvent(Window *w, int x, int y, int click_count)
 	WidgetType widget_type = (nw != nullptr) ? nw->type : WWT_EMPTY;
 
 	bool focused_widget_changed = false;
-	/* If clicked on a window that previously did dot have focus */
+	/* If clicked on a window that previously did not have focus */
 	if (_focused_window != w &&                 // We already have focus, right?
 			(w->window_desc->flags & WDF_NO_FOCUS) == 0 &&  // Don't lose focus to toolbars
 			widget_type != WWT_CLOSEBOX) {          // Don't change focused window if 'X' (close button) was clicked
@@ -983,7 +983,7 @@ void DrawOverlappedWindowForAll(int left, int top, int right, int bottom)
  */
 void Window::SetDirty() const
 {
-	SetDirtyBlocks(this->left, this->top, this->left + this->width, this->top + this->height);
+	AddDirtyBlock(this->left, this->top, this->left + this->width, this->top + this->height);
 }
 
 /**
@@ -3493,7 +3493,7 @@ static int PositionWindow(Window *w, WindowClass clss, int setting)
 		default: w->left = 0; break;
 	}
 	if (w->viewport != nullptr) w->viewport->left += w->left - old_left;
-	SetDirtyBlocks(0, w->top, _screen.width, w->top + w->height); // invalidate the whole row
+	AddDirtyBlock(0, w->top, _screen.width, w->top + w->height); // invalidate the whole row
 	return w->left;
 }
 
