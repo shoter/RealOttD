@@ -168,7 +168,7 @@ extern void EnginesMonthlyLoop();
 extern void TownsMonthlyLoop();
 extern void IndustryMonthlyLoop();
 extern void StationMonthlyLoop();
-extern void SubsidyMonthlyLoop();
+extern void SubsidyDailyLoop();
 
 extern void CompaniesYearlyLoop();
 extern void VehiclesYearlyLoop();
@@ -235,7 +235,6 @@ static void OnNewMonth()
 	EnginesMonthlyLoop();
 	TownsMonthlyLoop();
 	IndustryMonthlyLoop();
-	SubsidyMonthlyLoop();
 	StationMonthlyLoop();
 	if (_network_server) NetworkServerMonthlyLoop();
 }
@@ -253,6 +252,7 @@ static void OnNewDay()
 
 	DisasterDailyLoop();
 	IndustryDailyLoop();
+	SubsidyDailyLoop();
 
 	EnginesDailyLoop();
 

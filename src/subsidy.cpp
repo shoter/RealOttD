@@ -463,7 +463,7 @@ bool FindSubsidyCargoDestination(CargoID cid, SourceType src_type, SourceID src)
 }
 
 /** Perform the monthly update of open subsidies, and try to create a new one. */
-void SubsidyMonthlyLoop()
+void SubsidyDailyLoop()
 {
 	bool modified = false;
 

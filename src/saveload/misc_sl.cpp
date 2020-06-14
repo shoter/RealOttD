@@ -23,7 +23,7 @@
 
 extern TileIndex _cur_tileloop_tile;
 extern uint16 _disaster_delay;
-extern byte _trees_tick_ctr;
+extern uint32 _trees_tick_ctr;
 
 /* Keep track of current game position */
 int _saved_scrollpos_x;

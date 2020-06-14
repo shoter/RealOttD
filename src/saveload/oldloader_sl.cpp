@@ -1566,7 +1566,7 @@ static bool LoadTTDPatchExtraChunks(LoadgameState *ls, int num)
 
 extern TileIndex _cur_tileloop_tile;
 extern uint16 _disaster_delay;
-extern byte _trees_tick_ctr;
+extern uint32 _trees_tick_ctr;
 extern byte _age_cargo_skip_counter; // From misc_sl.cpp
 extern uint8 _old_diff_level;
 extern uint8 _old_units;
