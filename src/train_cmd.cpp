@@ -3991,10 +3991,9 @@ void Train::OnNewDay()
 			TileIndex tile = Station::Get(this->current_order.GetDestination())->train_station.tile;
 			if (tile != INVALID_TILE) this->dest_tile = tile;
 		}
-
 		if (this->running_ticks != 0) {
 			/* running costs */
-			CommandCost cost(EXPENSES_TRAIN_RUN, this->GetRunningCost() * this->running_ticks / (DAYS_IN_YEAR  * DAY_TICKS));
+			CommandCost cost(EXPENSES_TRAIN_RUN, this->GetRunningCost() *this->running_ticks / (DAY_TICKS * 30));
 
 			this->profit_this_year -= cost.GetCost();
 			this->running_ticks = 0;

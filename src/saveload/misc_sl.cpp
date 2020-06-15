@@ -112,7 +112,7 @@ static const SaveLoadGlobVarList _date_check_desc[] = {
 	    SLE_NULL(1),                       // _cur_company_tick_index
 	SLE_CONDNULL(2, SL_MIN_VERSION, SLV_109),               // _next_competitor_start
 	SLE_CONDNULL(4, SLV_109, SL_MAX_VERSION),  // _next_competitor_start
-	    SLE_NULL(1),                       // _trees_tick_ctr
+	    SLE_NULL(4),                       // _trees_tick_ctr
 	SLE_CONDNULL(1, SLV_4, SL_MAX_VERSION),    // _pause_mode
 	SLE_CONDNULL(4, SLV_11, SLV_120),
 	    SLEG_END()
